@@ -8,17 +8,9 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GeneratorComponent,
-    PaymentsComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [AppComponent, GeneratorComponent, PaymentsComponent, HeaderComponent],
+	imports: [BrowserModule, AppRoutingModule],
+	providers: [],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

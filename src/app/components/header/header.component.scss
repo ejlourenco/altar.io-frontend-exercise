@@ -2,35 +2,35 @@ $primary-color: #04f;
 $background-color: white;
 
 .app-header {
-    width: 100%;
-    background-color: $primary-color;
+	width: 100%;
+	background-color: $primary-color;
 
-    > nav {
-        display: flex;
-        margin: auto;
-        max-width: 35rem;
-        padding: 1rem 0;
+	> nav {
+		display: flex;
+		margin: auto;
+		max-width: 35rem;
+		padding: 1rem 0;
 
-        > ul {
-            margin: 0;
-            list-style: none;
-            display: flex;
-            gap: 1rem;
+		> ul {
+			margin: 0;
+			list-style: none;
+			display: flex;
+			gap: 1rem;
 
-            a {
-                font-family: Roboto, sans-serif;
-                text-decoration: none;
-                background-color: $primary-color;
-                color: $background-color;
-                padding: 0.8rem;
-                font-size: larger;
-                font-weight: bold;
-                
-                &.active {
-                    color: $primary-color;
-                    background-color: $background-color;
-                }
-            }
-        }
-    }
+			a {
+				font-family: Roboto, Lato, sans-serif;
+				text-decoration: none;
+				background-color: $primary-color;
+				color: $background-color;
+				padding: 0.8rem;
+				font-size: larger;
+				font-weight: bold;
+
+				&.active {
+					color: $primary-color;
+					background-color: $background-color;
+				}
+			}
+		}
+	}
 }

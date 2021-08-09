@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-generator',
-  templateUrl: './generator.component.html',
-  styleUrls: ['./generator.component.scss']
+	selector: 'app-generator',
+	templateUrl: './generator.component.html',
+	styleUrls: ['./generator.component.scss'],
 })
-export class GeneratorComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class GeneratorComponent {}
