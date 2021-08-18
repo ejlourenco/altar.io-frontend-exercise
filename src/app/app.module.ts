@@ -3,13 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GeneratorComponent } from './components/generator/generator.component';
 import { PaymentsComponent } from './components/payments/payments.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderModule } from './components/header/header.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GeneratorModule } from './components/generator/generator.module';
 
 @NgModule({
-	declarations: [AppComponent, GeneratorComponent, PaymentsComponent, HeaderComponent],
-	imports: [BrowserModule, AppRoutingModule],
+	declarations: [AppComponent, PaymentsComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		HeaderModule,
+		BrowserAnimationsModule,
+		GeneratorModule,
+	],
 	providers: [],
 	bootstrap: [AppComponent],
 })

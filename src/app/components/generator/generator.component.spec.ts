@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GeneratorComponent } from './generator.component';
+import { GeneratorModule } from './generator.module';
 
 describe('GeneratorComponent', () => {
 	let component: GeneratorComponent;
@@ -8,7 +10,7 @@ describe('GeneratorComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [GeneratorComponent],
+			imports: [GeneratorModule, NoopAnimationsModule],
 		}).compileComponents();
 	}));
 

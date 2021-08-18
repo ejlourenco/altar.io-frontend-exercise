@@ -1,12 +1,10 @@
-<header class="app-header">
-	<nav>
-		<ul role="navigation">
-			<li>
-				<a routerLink="/generator" routerLinkActive="active">Generator</a>
-			</li>
-			<li>
-				<a routerLink="/payments" routerLinkActive="active">Payments</a>
-			</li>
-		</ul>
-	</nav>
-</header>
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<nav>
+			<a mat-button [routerLink]="[routeGenerator]" routerLinkActive="active">{{
+				labelGenerator
+			}}</a>
+			<a mat-button [routerLink]="[routePayments]" routerLinkActive="active">{{ labelPayments }}</a>
+		</nav>
+	</mat-toolbar-row>
+</mat-toolbar>

@@ -1,36 +1,19 @@
-$primary-color: #04f;
-$background-color: white;
+nav {
+	display: flex;
+	margin: auto;
+	max-width: 35rem;
+	padding: 1rem 0;
+	gap: 1rem;
 
-.app-header {
-	width: 100%;
-	background-color: $primary-color;
+	a {
+		font-family: Roboto, Lato, sans-serif;
+		text-decoration: none;
+		font-variant: small-caps;
+		font-size: large;
+		font-weight: bold;
 
-	> nav {
-		display: flex;
-		margin: auto;
-		max-width: 35rem;
-		padding: 1rem 0;
-
-		> ul {
-			margin: 0;
-			list-style: none;
-			display: flex;
-			gap: 1rem;
-
-			a {
-				font-family: Roboto, Lato, sans-serif;
-				text-decoration: none;
-				background-color: $primary-color;
-				color: $background-color;
-				padding: 0.8rem;
-				font-size: larger;
-				font-weight: bold;
-
-				&.active {
-					color: $primary-color;
-					background-color: $background-color;
-				}
-			}
+		&.active {
+			background-color: rgba(0, 0, 0, 0.2);
 		}
 	}
 }

@@ -1,0 +1,68 @@
+.app-generator {
+	max-width: 35rem;
+	margin: 1rem auto;
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 1rem 0;
+
+		label {
+			text-transform: uppercase;
+		}
+
+		button {
+			text-transform: uppercase;
+		}
+	}
+
+	&__progress-bar {
+		padding: 0.4rem 0 0;
+
+		&-text {
+			position: relative;
+			top: -1.5rem;
+			// left: 0;
+			text-align: center;
+		}
+	}
+
+	&__char-input {
+		width: 6rem;
+	}
+
+	&__grid {
+		table {
+			width: 100%;
+			border-spacing: 0;
+			border: none;
+			border-collapse: collapse;
+			text-align: center;
+
+			th {
+				height: 2rem;
+				border: 1px solid;
+				text-align: center;
+				vertical-align: middle;
+				&:first-of-type {
+					border-top: 0;
+					border-left: 0;
+				}
+			}
+			tr {
+				height: 2rem;
+
+				td {
+					border: 1px solid;
+					text-align: center;
+					min-width: 1rem;
+
+					&:first-of-type {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
+}

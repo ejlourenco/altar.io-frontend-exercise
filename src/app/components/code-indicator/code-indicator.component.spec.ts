@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
-import { HeaderModule } from './header.module';
+import { CodeIndicatorComponent } from './code-indicator.component';
 
 describe('HeaderComponent', () => {
-	let component: HeaderComponent;
-	let fixture: ComponentFixture<HeaderComponent>;
+	let component: CodeIndicatorComponent;
+	let fixture: ComponentFixture<CodeIndicatorComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [HeaderComponent],
+			declarations: [CodeIndicatorComponent],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(HeaderComponent);
+		fixture = TestBed.createComponent(CodeIndicatorComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

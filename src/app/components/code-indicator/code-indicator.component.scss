@@ -1,0 +1,35 @@
+.app-code-indicator {
+	display: flex;
+	flex-direction: column;
+	width: 15rem;
+	height: 10rem;
+	margin: 1rem auto;
+	gap: 0.25rem;
+	font-family: Roboto, Lato, sans-serif;
+	text-transform: uppercase;
+
+	&__live {
+		display: flex;
+		margin: 0 auto;
+		align-items: center;
+		font-weight: bold;
+	}
+
+	&__icon {
+		width: 1.5rem;
+		height: 1.5rem;
+		color: gray;
+
+		&--live {
+			color: red;
+		}
+	}
+
+	&__code {
+		border: 2px solid grey;
+		border-radius: 4px;
+		padding: 1rem;
+		font-size: 1rem;
+		text-align: center;
+	}
+}
