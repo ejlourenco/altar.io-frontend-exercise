@@ -1,0 +1,18 @@
+<div *ngIf="model$ | async as model" class="app-code-indicator">
+	<div class="app-code-indicator__live">
+		<svg
+			class="app-code-indicator__icon"
+			[ngClass]="{ 'app-code-indicator__icon--live': model.isGeneratorActive }"
+		>
+			<path
+				fill="currentcolor"
+				d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"
+			/>
+		</svg>
+		<span *ngIf="model.isGeneratorActive">{{ liveLabel }}</span>
+		<span *ngIf="!model.isGeneratorActive">{{ notLiveLabel }}</span>
+	</div>
+	<div class="app-code-indicator__code">
+		{{ yourCodeLabel }}: <strong *ngIf="model.code">{{ model.code }}</strong></div
+	>
+</div>

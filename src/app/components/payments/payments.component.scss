@@ -1,0 +1,46 @@
+.app-payments {
+	max-width: 55rem;
+	margin: 1rem auto;
+
+	> mat-error {
+		text-align: center;
+	}
+
+	&__inputs {
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		gap: 1rem;
+		margin: 2rem 1rem 1rem;
+
+		button {
+			align-self: baseline;
+		}
+	}
+
+	&__table {
+		max-height: calc(100vh - 17rem);
+		overflow: auto;
+
+		table {
+			width: 100%;
+
+			.mat-column-Name {
+				min-width: 40%;
+			}
+			.mat-column-Amount {
+				min-width: 20%;
+			}
+			.mat-column-Code {
+				min-width: 20%;
+			}
+			.mat-column-Grid {
+				width: 20%;
+				max-width: 10rem;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+		}
+	}
+}

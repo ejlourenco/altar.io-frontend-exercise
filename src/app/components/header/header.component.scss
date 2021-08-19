@@ -1,0 +1,19 @@
+nav {
+	display: flex;
+	margin: auto;
+	max-width: 40rem;
+	padding: 1rem 0;
+	gap: 1rem;
+
+	a {
+		font-family: Roboto, Lato, sans-serif;
+		text-decoration: none;
+		font-variant: small-caps;
+		font-size: large;
+		font-weight: bold;
+
+		&.active {
+			background-color: rgba(0, 0, 0, 0.2);
+		}
+	}
+}

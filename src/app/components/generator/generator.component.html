@@ -1,0 +1,60 @@
+<div *ngIf="model$ | async as model" class="app-generator">
+	<div class="app-generator__top">
+		<mat-form-field class="app-generator__char-input">
+			<mat-label>{{ characterLabel }}</mat-label>
+			<input
+				#input
+				#ref_inputFormControl="ngModel"
+				matInput
+				maxlength="1"
+				name="selectedChar"
+				[placeholder]="characterPlaceholder"
+				[disabled]="!model.isInputEnabled"
+				[pattern]="pattern"
+				[ngModel]="selectedChar"
+				(ngModelChange)="onCharacterChanged($event)"
+				(focus)="input.select()"
+			/>
+			<mat-error *ngIf="!ref_inputFormControl.valid">{{ charNotValidError }}</mat-error>
+		</mat-form-field>
+		<ng-template [ngIf]="currentTime$ | async" let-currentTime>
+			<div class="app-generator__clock">
+				<span>{{ currentTime.toLocaleTimeString() }}</span>
+				<div *ngIf="model.isGeneratorActive" class="app-generator__progress-spinner">
+					<mat-progress-spinner
+						color="primary"
+						mode="determinate"
+						diameter="30"
+						strokeWidth="2"
+						[value]="model.progressInPercentage"
+					>
+					</mat-progress-spinner>
+					<div class="app-generator__progress-spinner-text">
+						{{ model.countDownSecs }}
+					</div>
+				</div>
+				<div *ngIf="!model.isGeneratorActive"></div>
+			</div>
+		</ng-template>
+		<mat-slide-toggle
+			color="primary"
+			labelPosition="before"
+			[checked]="model.isGeneratorActive"
+			(change)="toggleGenerate($event)"
+			>{{ generate2dGridLabel }}</mat-slide-toggle
+		>
+	</div>
+	<div *ngIf="model.grid" class="app-generator__grid">
+		<table>
+			<th></th>
+			<th *ngFor="let column of columns; index as j">{{ j }}</th>
+			<tr *ngFor="let row of rows; index as i">
+				<td>{{ i }}</td>
+				<td *ngFor="let column of columns; index as j">{{
+					model.grid.data[i * numberOfColumns + j]
+				}}</td>
+			</tr>
+		</table>
+		<app-code-indicator></app-code-indicator>
+	</div>
+</div>
