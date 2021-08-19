@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { combineLatest, timer } from 'rxjs';
-import { BehaviorSubject, interval, NEVER, of } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { BehaviorSubject, interval, of } from 'rxjs';
 import {
 	filter,
 	map,
@@ -8,13 +8,10 @@ import {
 	tap,
 	startWith,
 	shareReplay,
-	share,
 	delay,
 	concatMap,
 	skip,
-	throttle,
 	throttleTime,
-	mapTo,
 } from 'rxjs/operators';
 import {
 	AVAILABLE_CHARS,
@@ -24,11 +21,54 @@ import {
 	NUMBER_OF_ROWS,
 	TIME_TO_WAIT_CHAR_INPUT_SECS,
 } from '../models/constants';
+import { GeneratorModel } from '../models/generator.model';
+import { ClockService } from './clock.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class GeneratorService {
+	constructor(private clockService: ClockService) {
+		combineLatest([
+			this.isGeneratorActive$,
+			this.progressInPercentage$,
+			this.countDownSecs$,
+			this.selectedChar$,
+			this.isInputEnabled$,
+			this.grid$,
+			this.code$,
+			this.acceptedSelectedChar$,
+		])
+			.pipe(
+				map(
+					([
+						isGeneratorActive,
+						progressInPercentage,
+						countDownSecs,
+						selectedChar,
+						isInputEnabled,
+						grid,
+						code,
+						acceptedSelectedChar,
+					]: [boolean, number, string, string, boolean, string[], string, string]) => ({
+						isGeneratorActive,
+						progressInPercentage,
+						countDownSecs,
+						selectedChar,
+						isInputEnabled,
+						grid: {
+							data: grid,
+							rows: this.getNumberOfRows(),
+							columns: this.getNumberOfColumns(),
+						},
+						code,
+						acceptedSelectedChar,
+					})
+				)
+			)
+			.subscribe(this.model$);
+	}
+
 	availableChars = AVAILABLE_CHARS.split('');
 
 	getInputPattern() {
@@ -45,10 +85,6 @@ export class GeneratorService {
 
 	getCharWeight() {
 		return CHAR_WEIGHT;
-	}
-
-	getAvailableChars() {
-		return AVAILABLE_CHARS;
 	}
 
 	getRandomChar(chars: string[]) {
@@ -162,7 +198,7 @@ export class GeneratorService {
 	private isInputEnabled$ = this.selectedChar$.pipe(
 		skip(1),
 		filter((char) => this.availableChars.includes(char)),
-		switchMap((char) =>
+		switchMap(() =>
 			of(0, 1).pipe(
 				concatMap((x) =>
 					of(x).pipe(
@@ -208,38 +244,9 @@ export class GeneratorService {
 		shareReplay()
 	);
 
-	private code$ = this.grid$.pipe(map((grid) => this.calculateCode(grid, new Date())));
-
-	model$ = combineLatest([
-		this.isGeneratorActive$,
-		this.progressInPercentage$,
-		this.countDownSecs$,
-		this.selectedChar$,
-		this.isInputEnabled$,
-		this.grid$,
-		this.code$,
-		this.acceptedSelectedChar$,
-	]).pipe(
-		map(
-			([
-				isGeneratorActive,
-				progressInPercentage,
-				countDownSecs,
-				selectedChar,
-				isInputEnabled,
-				grid,
-				code,
-				acceptedSelectedChar,
-			]) => ({
-				isGeneratorActive,
-				progressInPercentage,
-				countDownSecs,
-				selectedChar,
-				isInputEnabled,
-				grid,
-				code,
-				acceptedSelectedChar,
-			})
-		)
+	private code$ = this.grid$.pipe(
+		map((grid) => this.calculateCode(grid, this.clockService.getCurrentDate()))
 	);
+
+	model$ = new BehaviorSubject<GeneratorModel>(<any>{});
 }

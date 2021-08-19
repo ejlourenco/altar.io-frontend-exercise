@@ -13,6 +13,6 @@
 		<span *ngIf="!model.isGeneratorActive">{{ notLiveLabel }}</span>
 	</div>
 	<div class="app-code-indicator__code">
-		{{ yourCodeLabel }}: <b>{{ model.code }}</b></div
+		{{ yourCodeLabel }}: <strong *ngIf="model.code">{{ model.code }}</strong></div
 	>
 </div>

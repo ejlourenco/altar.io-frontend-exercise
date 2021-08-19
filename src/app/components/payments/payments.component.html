@@ -1,1 +1,53 @@
-<p>payments works!</p>
+<app-code-indicator></app-code-indicator>
+<div *ngIf="generatorModel$ | async as generatorModel" class="app-payments">
+	<mat-error *ngIf="!generatorModel.isGeneratorActive">{{ generatorNotActiveError }}</mat-error>
+	<form [formGroup]="paymentForm" (ngSubmit)="onPaymentAdded()">
+		<div class="app-payments__inputs">
+			<mat-form-field>
+				<mat-label>{{ paymentLabel }}</mat-label>
+				<input #input matInput formControlName="payment" [placeholder]="paymentLabel" />
+				<mat-error *ngIf="paymentForm.get('payment').errors">{{ paymentRequiredError }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ amountLabel }}</mat-label>
+				<input #input matInput formControlName="amount" type="number" [placeholder]="amountLabel" />
+				<mat-error *ngIf="paymentForm.get('amount').errors">{{ invalidAmountError }}</mat-error>
+			</mat-form-field>
+			<button
+				mat-flat-button
+				color="primary"
+				type="submit"
+				[disabled]="!generatorModel.isGeneratorActive || !paymentForm.valid"
+			>
+				<svg style="width: 1.5rem; height: 1.5rem" viewBox="0 0 24 24">
+					<path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+				</svg>
+				{{ addLabel }}</button
+			>
+		</div>
+	</form>
+	<div *ngIf="paymentsModel$ | async as paymentsModel" class="app-payments__table">
+		<table mat-table [dataSource]="paymentsModel" class="mat-elevation-z8">
+			<ng-container matColumnDef="Name">
+				<th mat-header-cell *matHeaderCellDef>{{ nameColumn }}</th>
+				<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+			</ng-container>
+			<ng-container matColumnDef="Amount">
+				<th mat-header-cell *matHeaderCellDef>{{ amountColumn }}</th>
+				<td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+			</ng-container>
+			<ng-container matColumnDef="Code">
+				<th mat-header-cell *matHeaderCellDef>{{ codeColumn }}</th>
+				<td mat-cell *matCellDef="let element">{{ element.code }} </td>
+			</ng-container>
+			<ng-container matColumnDef="Grid">
+				<th mat-header-cell *matHeaderCellDef>{{ gridColumn }}</th>
+				<td mat-cell *matCellDef="let element" [title]="getGridDataTooltip(element.grid)">
+					{{ element.grid.data.join('') }}
+				</td>
+			</ng-container>
+			<tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+			<tr mat-row *matRowDef="let row; columns: columns"></tr>
+		</table>
+	</div>
+</div>

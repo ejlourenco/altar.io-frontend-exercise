@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
 	declarations: [CodeIndicatorComponent],
-	imports: [CommonModule, RouterModule, MatToolbarModule, MatButtonModule],
+	imports: [CommonModule], // RouterModule, MatToolbarModule, MatButtonModule],
 	exports: [CodeIndicatorComponent],
 })
 export class CodeIndicatorModule {}

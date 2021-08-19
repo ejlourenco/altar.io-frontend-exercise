@@ -1,5 +1,5 @@
 .app-generator {
-	max-width: 35rem;
+	max-width: 40rem;
 	margin: 1rem auto;
 
 	&__top {
@@ -7,6 +7,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin: 1rem 0;
+		height: 5rem;
 
 		label {
 			text-transform: uppercase;
@@ -17,13 +18,19 @@
 		}
 	}
 
-	&__progress-bar {
+	&__clock {
+		display: flex;
+		flex-direction: column;
+		height: 1rem;
+	}
+
+	&__progress-spinner {
 		padding: 0.4rem 0 0;
+		align-self: center;
 
 		&-text {
 			position: relative;
 			top: -1.5rem;
-			// left: 0;
 			text-align: center;
 		}
 	}
